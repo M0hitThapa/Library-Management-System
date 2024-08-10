@@ -1,0 +1,1 @@
+A simple Library Management System allows users to add, delete, and issue books, as well as check their availability.
