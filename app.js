@@ -2,15 +2,15 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const books = [{
-    bookName: "fuck you bitch",
-    bookAuthor: "Johny sins",
+    bookName: "The Long Run",
+    bookAuthor: "Stacey D’Erasmo",
     bookPages: 200,
     bookPrice: 240,
     bookState: "Available"
 },
 {
-    bookName: "oh yeah",
-    bookAuthor: "Miya Khalifa",
+    bookName: "Fifteen Cents on the Dollar",
+    bookAuthor: "Louise StoryEbony Reed",
     bookPages: 200,
     bookPrice: 240,
     bookState: "Available"
@@ -46,4 +46,43 @@ app.post('/', (req,res) =>{
    })
 
 })
+
+app.post('/issue', (req,res) => {
+    var requestedBookName = req.body.bookName;
+    books.forEach(book => {
+        if (book.bookName == requestedBookName) {
+            book.bookState = "Issued";
+        }
+    })
+    res.render("home", {
+        hello : books
+    })
+})
+app.post('/return', (req,res) => {
+    var requestedBookName = req.body.bookName;
+    books.forEach(book => {
+        if (book.bookName == requestedBookName) {
+            book.bookState = "Available";
+        }
+    })
+    res.render("home", {
+        hello : books
+    })
+})
+app.post('/delete', (req, res) => {
+    var requestedBookName = req.body.bookName;
+    var j = 0;
+    
+    books.forEach(book => {
+        j = j + 1;
+        if (book.bookName == requestedBookName) {
+            books.splice((j - 1), 1)
+        }
+    })
+    
+    res.render("home", {
+        hello: books
+    })
+ })
+
 app.listen(3000);
