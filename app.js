@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 
 const books = [{
     bookName: "The Long Run",
-    bookAuthor: "Stacey D’Erasmo",
+    bookAuthor: "Stacey D'Erasmo",
     bookPages: 200,
     bookPrice: 240,
     bookState: "Available"
